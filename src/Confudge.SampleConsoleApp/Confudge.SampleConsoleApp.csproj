@@ -34,11 +34,7 @@
   <ItemGroup>
     <Reference Include="Bearded.Monads, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Bearded.Monads.1.0.10\lib\NET35\Bearded.Monads.dll</HintPath>
-    </Reference>
-    <Reference Include="Confudge, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\confudge.0.1\lib\NET35\Confudge.dll</HintPath>
+      <HintPath>..\..\packages\Bearded.Monads.1.0.12\lib\NET35\Bearded.Monads.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -53,8 +49,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Confudge\Confudge.csproj">
+      <Project>{69ed1bfa-35ca-4a8e-8549-514b5a25614c}</Project>
+      <Name>Confudge</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

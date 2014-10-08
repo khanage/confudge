@@ -2,16 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Bearded.Monads;
+using Confudge.Machinery.Defaults;
 
 namespace Confudge.Machinery
 {
+    public delegate Option<object> Parser(string data);
+
     public class RegistrationConfiguration<Registratee>
     {
-        Dictionary<string, BoxedParser> specificRegistrations;
+        readonly Dictionary<string, BoxedParser> specificRegistrations;
+        readonly DefaultMapper defaultMapper;
 
         public RegistrationConfiguration()
         {
             specificRegistrations = new Dictionary<string, BoxedParser>();
+            defaultMapper = new AllDefaultMappers();
         }
 
         public SpecificParser<A> For<A>(Expression<Func<Registratee, A>> lookupExpression)
@@ -24,12 +29,24 @@ namespace Confudge.Machinery
             return specificParser;
         }
 
-        public Option<Func<string, Option<object>>> GetBinding(string name, Type propertyType)
+        public Option<Parser> GetBinding(string name, Type propertyType)
         {
-            if (propertyType == typeof(string)) return Option.Return<Func<string, Option<object>>>(Option.Return<object>);
+            var specificLookup = specificRegistrations
+                .MaybeGetValue(name)
+                .Select(AsParser);
 
-            return specificRegistrations.MaybeGetValue(name)
-                .Map<Func<string,Option<object>>>(parser => parser.Parse);
+            return specificLookup ? specificLookup 
+                : UseDefault(propertyType);
+        }
+
+        Option<Parser> UseDefault(Type propertyType)
+        {
+            return defaultMapper.ParserFor(propertyType).Select(AsParser);
+        }
+
+        Parser AsParser(BoxedParser boxedParser)
+        {
+            return boxedParser.Parse;
         }
 
         public bool ShouldThrowOnFailure { get; set; }
@@ -37,11 +54,6 @@ namespace Confudge.Machinery
         string DetermineNameOfProperty<A>(Expression<Func<Registratee, A>> lookupExpression)
         {
             return ((MemberExpression)lookupExpression.Body).Member.Name;
-        }
-
-        public interface BoxedParser
-        {
-            Option<object> Parse(string value);
         }
 
         public class SpecificParser<A> : BoxedParser
@@ -63,7 +75,7 @@ namespace Confudge.Machinery
             public Option<object> Parse(string value)
             {
                 return boxedFunction(value)
-                    .Map(val => (object)val);
+                    .Select(val => (object)val);
             }
         }
     }

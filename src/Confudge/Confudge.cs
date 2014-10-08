@@ -52,6 +52,7 @@ namespace Confudge
 
                 foreach (var property in publiclySettableProperties)
                 {
+                    // TODO: Test for collection here
                     MaybeSetValue(registration, creation, elem, property);
                 }
 
@@ -61,7 +62,7 @@ namespace Confudge
 
         static void MaybeSetValue<A>(RegistrationConfiguration<A> registration, A creation, XElement elem, PropertyInfo property)
         {
-            var propertyInElement = elem.Descendants(property.Name).SingleOrDefault().NoneIfNull();
+            var propertyInElement = elem.Descendants(property.Name).SingleOrNone();
             var parsedProperty = propertyInElement.SelectMany(ParseForProperty(property, registration));
 
             parsedProperty.Do(value => property.SetValue(creation, value, null),

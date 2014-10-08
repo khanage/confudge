@@ -32,8 +32,7 @@
   <ItemGroup>
     <Reference Include="Bearded.Monads, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Bearded.Monads.1.0.10\lib\NET35\Bearded.Monads.dll</HintPath>
-      <Private Condition=" '$(Configuration)' == 'Release' ">False</Private>
+      <HintPath>..\..\..\Csn.Storage\src\packages\Bearded.Monads.1.0.12\lib\NET35\Bearded.Monads.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,6 +48,14 @@
     <Compile Include="Errors\ConfudgeException.cs" />
     <Compile Include="Errors\DefaultCreatorException.cs" />
     <Compile Include="Errors\YouAreAClownException.cs" />
+    <Compile Include="Machinery\Defaults\AllDefaultMappers.cs" />
+    <Compile Include="Machinery\Defaults\BoxedParser.cs" />
+    <Compile Include="Machinery\Defaults\DefaultMapper.cs" />
+    <Compile Include="Machinery\Defaults\EnumParser.cs" />
+    <Compile Include="Machinery\Defaults\FloatParser.cs" />
+    <Compile Include="Machinery\Defaults\IntParser.cs" />
+    <Compile Include="Machinery\Defaults\NoOpParser.cs" />
+    <Compile Include="Machinery\Defaults\UriParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Machinery\RegistrationConfiguration.cs" />
     <Compile Include="Machinery\Registrations.cs" />
