@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>confudge</id>
-    <version>0.1</version>
+    <version>0.2</version>
     <title>confudge</title>
     <authors>khanage</authors>
     <owners>khanage</owners>
@@ -11,6 +11,8 @@
       quickly enable typed configuration in .net.
     </description>
     <releaseNotes>
+      * Add default parsers
+      * Add recursive parsing (sub objects will be mapped)
     </releaseNotes>
     <summary>
       Confudge is a configuration helper turning normal .net config into typed values.
@@ -22,7 +24,7 @@
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
     <copyright>Copyright  2014</copyright>
     <dependencies>
-      <dependency id="bearded.monads" version="1.0.10" />
+      <dependency id="bearded.monads" version="1.0.12" />
     </dependencies>
   </metadata>
   <files>

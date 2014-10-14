@@ -3,9 +3,9 @@ using Bearded.Monads;
 
 namespace Confudge.Machinery.Defaults
 {
-    class NoOpParser : BoxedParser, DefaultMapper
+    class NoOpParser : DefaultBoxedParserBase<string>, DefaultMapper
     {
-        public Option<object> Parse(string value)
+        protected override Option<string> ParseWellTyped(string value)
         {
             return value;
         }

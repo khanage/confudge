@@ -3,11 +3,11 @@ using Bearded.Monads;
 
 namespace Confudge.Machinery.Defaults
 {
-    class FloatParser : BoxedParser, DefaultMapper
+    class FloatParser : DefaultBoxedParserBase<float>, DefaultMapper
     {
-        public Option<object> Parse(string value)
+        protected override Option<float> ParseWellTyped(string value)
         {
-            return value.MaybeFloat().Select(o => (object)o);
+            return value.MaybeFloat();
         }
 
         static readonly FloatParser floatParser = new FloatParser();

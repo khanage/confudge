@@ -25,11 +25,11 @@ namespace Confudge.Machinery.Defaults
             return realisedType.GetConstructor(new Type[0]).Invoke(new object[0]) as BoxedParser;
         }
 
-        class TypedEnumParser<A> : BoxedParser where A : struct
+        class TypedEnumParser<A> : DefaultBoxedParserBase<A> where A : struct
         {
-            public Option<object> Parse(string value)
+            protected override Option<A> ParseWellTyped(string value)
             {
-                return value.MaybeEnum<A>().Select(o => (object)o);
+                return value.MaybeEnum<A>();
             }
         }
     }

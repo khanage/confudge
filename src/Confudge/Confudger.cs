@@ -9,7 +9,7 @@ using Confudge.Machinery;
 
 namespace Confudge
 {
-    public static class Confudge
+    public static class Confudger
     {
         static Registrations registrations;
         static XDocument configurationDocument;

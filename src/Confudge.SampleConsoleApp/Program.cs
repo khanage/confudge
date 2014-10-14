@@ -10,7 +10,7 @@ namespace Confudge.SampleConsoleApp
     {
         static void Main(string[] args)
         {
-            Confudge.Bootstrap(
+            Confudger.Bootstrap(
                 ConfigurationManager.GetSection("confudge"),
                 registrations =>
                 {
@@ -34,7 +34,7 @@ namespace Confudge.SampleConsoleApp
             //var simpleType = Confudge.Load<SimpleType>().Value;
             //var anotherType = Confudge.Load<AnotherType>().Value;
             //var autoType = Confudge.Load<AutoType>().Value;
-            var nestedType = Confudge.Load<NestedType>().Value;
+            var nestedType = Confudger.Load<NestedType>().Value;
 
             //Console.WriteLine("Simpletype: {0}", simpleType);
             //Console.WriteLine("Anothertype: {0}", anotherType);

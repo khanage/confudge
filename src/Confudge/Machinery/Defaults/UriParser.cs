@@ -3,11 +3,11 @@ using Bearded.Monads;
 
 namespace Confudge.Machinery.Defaults
 {
-    class UriParser : BoxedParser, DefaultMapper
+    class UriParser : DefaultBoxedParserBase<Uri>, DefaultMapper
     {
-        public Option<object> Parse(string value)
+        protected override Option<Uri> ParseWellTyped(string value)
         {
-            return value.MaybeUri(UriKind.RelativeOrAbsolute).Select(o => (object)o);
+            return value.MaybeUri(UriKind.RelativeOrAbsolute);
         }
 
         static readonly UriParser uriParser = new UriParser();

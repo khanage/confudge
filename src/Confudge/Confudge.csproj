@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Confudge.cs" />
+    <Compile Include="Confudger.cs" />
     <Compile Include="Construction\Creator.cs" />
     <Compile Include="Construction\DefaultCreator.cs" />
     <Compile Include="Errors\ConfudgeException.cs" />
@@ -50,6 +50,7 @@
     <Compile Include="Errors\YouAreAClownException.cs" />
     <Compile Include="Machinery\Defaults\AllDefaultMappers.cs" />
     <Compile Include="Machinery\Defaults\BoxedParser.cs" />
+    <Compile Include="Machinery\Defaults\ClassMapper.cs" />
     <Compile Include="Machinery\Defaults\DefaultMapper.cs" />
     <Compile Include="Machinery\Defaults\EnumParser.cs" />
     <Compile Include="Machinery\Defaults\FloatParser.cs" />
